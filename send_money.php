@@ -87,20 +87,20 @@ $sender_id = $_GET['id'];
         $selectQ = "select * from customers where id='$sender_id'";
         $que = mysqli_query($con, $selectQ);
         while ($row = mysqli_fetch_array($que)) {
-            $current = $row['current_balance'];
+            $current = $row['account_bal'];
             $sender = $row['name'];
         }
         if (($current - $amount) >= 0) {
             $new_balance = $current - $amount;
-            $updateQuery = "update customers set current_balance='$new_balance' where id='$sender_id'";
+            $updateQuery = "update customers set account_bal='$new_balance' where id='$sender_id'";
             $q = mysqli_query($con, $updateQuery);
             $selectpeople = "select * from customers where name='$receiver'";
             $quer = mysqli_query($con, $selectpeople);
             while ($rows = mysqli_fetch_array($quer)) {
-                $current_bal = $rows['current_balance'];
+                $current_bal = $rows['account_bal'];
             }
             $final_balance = $current_bal + $amount;
-            $updateQ = "update customers set current_balance='$final_balance' where name='$receiver'";
+            $updateQ = "update customers set account_bal='$final_balance' where name='$receiver'";
             $Query = mysqli_query($con, $updateQ);
             if ($Query && $q) {
                 $insertQuery = "INSERT INTO `transaction`(`sender`, `receiver`, `amount`, `status`) VALUES ('$sender','$receiver','$amount','success')";
