@@ -13,7 +13,7 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Raleway', sans-serif;
-            /* background-color: #020436; */
+            
         }
     </style>
 
